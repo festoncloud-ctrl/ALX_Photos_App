@@ -8,33 +8,80 @@ In line with users protection, users photos will be protected when sharing, toke
 
 ## Tech Stack
 
-- **Programming Language:** Python (Backend)
-- **Framework:** Django (Backend), React.js (Frontend)
-- **Database:** MySQL (hosted on Supabase)
+- **Programming Language:** JavaScript (Backend), Python (AI/ML if needed)
+- **Framework:** Node.js with Express (Backend), React.js (Frontend)
+- **Database:** PostgreSQL (hosted on Supabase)
 - **AI Integration:** Google Gemini, GitHub Copilot
-- **Testing Framework:** pytest
+- **Testing Framework:** Jest (Backend), pytest (if Python components)
 - **Frontend Libraries:** React, Axios for API calls, Material-UI for UI components
-- **Backend Libraries:** Django REST Framework for API, Pillow for image processing, JWT for authentication
+- **Backend Libraries:** Express.js, Supabase client, JWT for authentication
 - **Deployment:** Docker for containerization, AWS/GCP for cloud hosting
 - **Version Control:** Git
 - **IDE:** Visual Studio Code
 - **Other Tools:** Postman for API testing, GitHub for repository and CI/CD
+
+## Backend Setup
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm
+- Supabase account and project
+
+### Installation
+1. Clone the repository
+2. Navigate to the backend directory
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Create a `.env` file with your Supabase credentials:
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+### Running the Server
+```bash
+npm start
+```
+For development with auto-reload:
+```bash
+npm run dev
+```
+
+The server will run on `http://localhost:3000`
+
+## API Endpoints
+
+### Authentication
+- `POST /auth/register` - Register a new user
+  - Body: `{ "email": "user@example.com", "password": "password" }`
+- `POST /auth/login` - Login user
+  - Body: `{ "email": "user@example.com", "password": "password" }`
+- `POST /auth/logout` - Logout user
+- `GET /auth/me` - Get current user (requires authentication)
+- `GET /protected` - Example protected route (requires authentication)
+
+All protected routes require a Bearer token in the Authorization header:
+```
+Authorization: Bearer <access_token>
+```
 
 ## AI Integration Plan
 
 ### 🧱 Code or Feature Generation
 
 AI will be used extensively to scaffold and generate code components:
-- Generate Django models based on database schema requirements
-- Create REST API views and serializers using Django REST Framework
-- Scaffold React components for photo upload, gallery display, and user authentication
+- Generate Express routes and middleware based on API requirements
+- Create React components for photo upload, gallery display, and user authentication
+- Scaffold Supabase database schemas and queries
 - Generate utility functions for image processing and tokenization logic
-- Assist in creating middleware for user authentication and photo protection
+- Assist in creating authentication middleware and protected routes
 
 ### 🧪 Testing Support
 
 AI will assist in generating comprehensive test suites:
-- Generate unit tests for Django models and views using pytest
+- Generate unit tests for Express routes and middleware using Jest
 - Create integration tests for API endpoints to ensure proper data flow
 - Generate tests for React components using Jest and React Testing Library
 - Assist in writing tests for image processing functions and tokenization features
@@ -43,10 +90,10 @@ AI will assist in generating comprehensive test suites:
 ### 📡 Schema-Aware or API-Aware Generation
 
 For database and API-driven development:
-- Generate Django models automatically from MySQL schema definitions
-- Create API endpoints based on model relationships and business logic
+- Generate Supabase table schemas and RLS policies
+- Create API endpoints based on database relationships and business logic
 - Generate OpenAPI/Swagger documentation from existing API specs
-- Assist in creating database queries and migrations based on schema changes
+- Assist in creating database queries and functions based on schema changes
 - Help design and implement tokenization logic based on photo metadata schema
 
 ## Plan for In-Editor/PR Review Tooling
